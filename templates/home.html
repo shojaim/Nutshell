@@ -1,0 +1,148 @@
+{% extends 'navs.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .my-card {
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: calc(33.33% - 20px);
+    vertical-align: top;
+    margin-right: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+  }
+
+  .my-card .card-body {
+    padding: 1.5rem;
+  }
+
+  .my-card .card-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .my-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .my-card .card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .my-card .btn-primary {
+    background-color: peru;
+    border-color: peru;
+    color: white;
+  }
+
+  .my-card .btn-primary:hover {
+    background-color: sienna;
+    border-color: sienna;
+  }
+
+  @media (max-width: 768px) {
+    .my-card {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+
+  .card-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+</style>
+
+{% if user.is_superuser %}
+  <h1 class=" m-5 text-center fs-3">به پنل ادمین سایت ناتشل خوش آمدید</h1>
+  <div class="mb-5">
+    <div class="card-row">
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">دسته بندی</h2>
+          <p>مشاهده و ویرایش دسته بندی محصولات</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'category' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">محصولات</h2>
+          <p>مشاهده و ویرایش انواع محصولات</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'product' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">شهر ها</h2>
+          <p>مشاهده و ویرایش شهر ها</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'city' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">انبار ها</h2>
+          <p>مشاهده و ویرایش انبار ها</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'inventory' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">موجودی انبار ها</h2>
+          <p>مشاهده و ویرایش موجودی انبار ها</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'inventoryProduct' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title fw-bold">سفارش ها</h2>
+          <p>مشاهده و ویرایش سفارش کاربران</p>
+          <div class="card-actions justify-content-end">
+            <a href="{% url 'order' %}" class="btn btn-primary">مشاهده</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <h1 class="font-extrabold m-5 text-center fs-3">به ناتشل خوش اومدی!</h1>
+  <div class="card-row">
+    {% for p in object_list %}
+    <div class="my-card">
+      <div class="card-body">
+        <h2 class="card-title font-extrabold fs-1">{{ p.name }}</h2>
+        <div class="persian-digit text-sm opacity-50 fw-bold">هر {{p.name.quantity}} گرم</div>
+        {% if p.quantity > 0 %}
+        <div class="persian-digit fw-bold text-success fs-2">{{ p.name.price }} تومان</div>
+        {% else %}
+        <div class="persian-digit fw-bold text-danger fs-2">ناموجود</div>
+        {% endif %}
+
+        <div class="card-actions justify-content-end">
+          <a {% if p.quantity == 0 %} disabled {% endif %} href="{% url 'userOrder' p.pk %}" class="btn btn-primary w-100">خرید</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% endblock content %}

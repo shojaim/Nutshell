@@ -1,0 +1,40 @@
+{% extends 'navs.html' %}
+{% block content %}
+<div class="p-5">
+    <div class="d-flex">
+        <div class="flex-grow-1 font-weight-bold text-primary" style="font-size: 2rem;">سفارش کاربران</div>
+    </div>
+
+    <div class="table-responsive mt-3">
+        <table class="table table-striped">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th>سفارش دهنده</th>
+              <th>انبار</th>
+              <th>محصول</th>
+              <th>تعداد</th>
+              <th>وضعیت سفارش</th>
+              <th class="text-end">عملیات</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for order in object_list %}
+            <!-- row 1 -->
+            <tr>
+              <td>{{ order.username.username }}</td>
+              <td>{{ order.product.inventory }}</td>
+              <td>{{ order.product }}</td>
+              <td class="persian-digit">{{ order.quantity }}</td>
+              <td>{{ order.status }}</td>
+              <td class="text-end">
+                <a href="{% url 'order_update' order.pk %}" class="btn btn-warning btn-sm"><i class="fa fa-pen"></i></a>
+                <a href="{% url 'order_delete' order.pk %}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+</div>
+{% endblock content %}

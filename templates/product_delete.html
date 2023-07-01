@@ -1,0 +1,12 @@
+{% extends 'navs.html' %}
+
+{% block content %}
+<div class="p-5 space-y-3">
+    <h1 class="font-bold text-3xl text-primary">حذف محصول</h1> 
+    <form action="" method="post">
+        {% csrf_token %} 
+        <p>آیا از حذف "{{ product.name }}" مطمئنید؟</p><br>
+        <button type="submit" class="btn btn-danger btn-block">بله حذف شود</button>
+    </form> 
+</div>
+{% endblock content %}

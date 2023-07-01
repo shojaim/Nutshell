@@ -1,0 +1,153 @@
+/* -------------------- Log In styles -------------------- */
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+  
+  .card {
+    width: 400px;
+    padding: 30px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+  }
+  
+  .card-title {
+    margin-bottom: 0;
+    color: rgb(142, 52, 0);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+  
+  .card .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: Sienna;
+    text-align: right;
+
+  }
+  
+  .card .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid Sienna;
+    border-radius: 3px;
+  }
+  
+  .card .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(160, 82, 45);
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .card .btn-primary:hover {
+    background-color: #cd853f;
+  }
+  
+  .card .text-center {
+    color: Sienna;
+    
+  }
+  
+  .card .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .link-primary {
+    color: #bd2c00;
+    text-decoration: none;
+    text-align: center;
+
+  }
+  
+
+
+  /* -------------------- Sign Up styles -------------------- */
+
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+  }
+  
+  .card {
+    width: 400px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card .card-title {
+    margin-bottom: 0;
+    color: #953400;
+    text-align: center;
+  }
+
+  .card .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+  }
+  
+  .card .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #a0522d;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .card .btn-primary:hover {
+    background-color: #cd853f;
+  }
+  
+  .card .text-danger {
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+
+  .card .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    /* Add any additional styling here */
+  }
+  
+  
+  .card .link-primary {
+    color: #a0522d;
+    text-decoration: none;
+  }
+  
+  .card .link-primary:hover {
+    text-decoration: underline;
+  }
+  

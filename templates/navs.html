@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nav %}
+<style>
+  .navbar {
+    background-color: peru;
+    color: sienna;
+  }
+
+  .navbar-toggler {
+    border-color: sienna;
+  }
+
+  .navbar-toggler-icon {
+    background-color: sienna;
+  }
+
+  .nav-link {
+    color: sienna;
+  }
+
+  .nav-link:hover {
+    color: #8b4513;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a href="{% url 'home' %}" class="btn btn-outline-light btn-lg">ناتشل (NutShell)</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+      <ul class="navbar-nav">
+        {% if not user.is_superuser %}
+        <li class="nav-item">
+          <a href="{% url 'orderList' %}" class="nav-link">
+            <i class="fas fa-basket-shopping"></i>
+            پیگیری خرید ها
+          </a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a href="{% url 'logout' %}" class="nav-link">
+            <i class="fas fa-right-from-bracket"></i>
+            خروج از حساب
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid" style="margin-top: 100px;">
+  <div class="row">
+    <div class="col-lg-8 mx-auto px-5">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+</div>
+{% endblock nav %}
+
+
+<style>
+  .my-card {
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    width: calc(33.33% - 20px);
+    vertical-align: top;
+    margin-right: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+  }
+
+  .my-card .card-body {
+    padding: 1.5rem;
+  }
+
+  .my-card .card-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .my-card p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .my-card .card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .my-card .btn-primary {
+    background-color: peru;
+    border-color: peru;
+    color: white;
+  }
+
+  .my-card .btn-primary:hover {
+    background-color: sienna;
+    border-color: sienna;
+  }
+
+  @media (max-width: 768px) {
+    .my-card {
+      width: 100%;
+      margin-right: 0;
+    }
+  }
+</style>
+
+{% if user.is_superuser %}
+  <div class="my-card">
+    <div class="card-body">
+      <h2 class="card-title fw-bold">محصولات</h2>
+      <p>مشاهده و ویرایش محصولات</p>
+      <div class="card-actions justify-content-end">
+        <a href="{% url 'product' %}" class="btn btn-primary">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  <div class="my-card">
+    <div class="card-body">
+      <h2 class="card-title fw-bold">انبار ها</h2>
+      <p>مشاهده و ویرایش انبار ها</p>
+      <div class="card-actions justify-content-end">
+        <a href="{% url 'inventory' %}" class="btn btn-primary">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  <div class="my-card">
+    <div class="card-body">
+      <h2 class="card-title fw-bold">موجودی انبار ها</h2>
+      <p>مشاهده و ویرایش موجودی انبار ها</p>
+      <div class="card-actions justify-content-end">
+        <a href="{% url 'inventoryProduct' %}" class="btn btn-primary">مشاهده</a>
+      </div>
+    </div>
+  </div>
+  <div class="my-card">
+    <div class="card-body">
+      <h2 class="card-title fw-bold">سفارش ها</h2>
+      <p>مشاهده و ویرایش سفارش کاربران</p>
+      <div class="card-actions justify-content-end">
+        <a href="{% url 'order' %}" class="btn btn-primary">مشاهده</a>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <h1 class="font-extrabold text-primary m-5 text-center fs-3">به فروشگاه خشکبار خوش آمدید!</h1>
+  <div>
+    {% for p in object_list %}
+      <div class="my-card">
+        <div class="card-body">
+          <h2 class="card-title font-extrabold fs-1">{{ p.name }}</h2>
+          <div class="persian-digit text-sm opacity-50 fw-bold">هر {{ p.name.quantity }} گرم</div>
+          {% if p.quantity > 0 %}
+            <div class="persian-digit fw-bold text-success fs-2">{{ p.name.price }} تومان</div>
+          {% else %}
+            <div class="persian-digit fw-bold text-danger fs-2">ناموجود</div>
+          {% endif %}
+          <div class="card-actions justify-content-end">
+            <a {% if p.quantity == 0 %} disabled {% endif %} href="{% url 'userOrder' p.pk %}" class="btn btn-primary w-100">خرید</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

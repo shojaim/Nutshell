@@ -1,0 +1,15 @@
+{% extends 'navs.html' %}
+
+{% block content %}
+<div class="p-5 space-y-3">
+    <h1 class= "color: sienna; text-align: right;">شهر جدید</h1> 
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form }}
+        </div>
+        <input class="btn btn-success w-100 mt-3" type="submit" value="ذخیره" style="background-color: peru;">
+    </form> 
+</div>
+
+{% endblock content %}

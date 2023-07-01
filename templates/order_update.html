@@ -1,0 +1,13 @@
+{% extends 'navs.html' %}
+{% block content %}
+<div class="p-5">
+    <h1 class="font-weight-bold text-primary" style="font-size: 2rem;">بروزرسانی سفارش</h1> 
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+        <input class="btn btn-success w-100 mt-3" type="submit" value="ذخیره">
+    </form> 
+</div>
+{% endblock content %}

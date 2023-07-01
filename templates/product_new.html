@@ -1,0 +1,71 @@
+{% extends 'navs.html' %}
+
+{% block content %}
+<style>
+  .form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    text-align: right;
+    gap: 1rem;
+  }
+
+  .form-container label {
+    color: peru;
+  }
+
+  .form-container input[type="text"],
+  .form-container textarea {
+    width: 300px; /* Set a fixed width for the input fields */
+    border: 1px solid peru;
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .form-container button {
+    background-color: peru;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 0.75rem 1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .form-container button:hover {
+    background-color: sienna;
+  }
+
+  .form-heading {
+    color: sienna;
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: right;
+  }
+</style>
+
+<div class="p-5">
+    <h1 class="form-heading">محصول جدید</h1> 
+    <br>
+    <form action="" method="post" class="form-container">
+        {% csrf_token %}
+
+        <div>
+            <label for="id_name">نام:</label>
+            {{ form.name }}
+        </div>
+        <div>
+            <label for="id_price">قیمت:</label>
+            {{ form.price }}
+        </div>
+        <div>
+            <label for="id_quantity">تعداد:</label>
+            {{ form.quantity }}
+        </div>
+
+        <br>
+        <button type="submit">ذخیره</button>
+    </form> 
+</div>
+{% endblock content %}

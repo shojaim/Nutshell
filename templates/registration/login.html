@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block nav %}
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card">
+    <h2 class="card-title">ورود</h2>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        <span class="text-danger text-sm">{{ form.non_field_errors }}</span>
+        <div class="form-group">
+          <label for="id_username">نام کاربری:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            autofocus
+            autocapitalize="none"
+            autocomplete="username"
+            maxlength="150"
+            required
+            id="id_username"
+          />
+          <span class="text-danger text-sm mt-2">{{ form.username.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="id_password">کلمه عبور:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            autocomplete="current-password"
+            required
+            id="id_password"
+          />
+          <span class="text-danger text-sm mt-2">{{ form.password.errors }}</span>
+        </div>
+        <label class="form-label">
+          حساب کاربری ندارید؟
+          <a href="{% url 'signup' %}" class="link-primary">ثبت نام کنید.</a>
+        </label>
+        <div class="form-group mt-4">
+          <button class="btn-primary">ورود</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock nav %}

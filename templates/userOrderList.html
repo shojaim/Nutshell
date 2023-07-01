@@ -1,0 +1,30 @@
+{% extends 'navs.html' %}
+
+{% block content %}
+<div class="p-5">
+    
+    <div class="font-weight-bold text-3xl text-primary">سفارشات شما</div>
+        
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>محصول</th>
+                    <th>تعداد</th>
+                    <th>وضعیت</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in object_list %}
+                <tr>
+                    <td>{{ p.product.name }}</td>
+                    <td>{{ p.quantity }}</td>
+                    <td>{{ p.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</div>
+{% endblock content %}

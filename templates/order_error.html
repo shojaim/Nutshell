@@ -1,0 +1,10 @@
+{% extends 'navs.html' %}
+{% block content %} 
+<div class="p-5 mt-5">
+    <h1 class="font-weight-bold text-danger text-center" style="font-size: 2rem;">خرید با خطا مواجه شد</h1> 
+ 
+    <p class="text-center">خرید شما انجام نشد، ممکن است مقدار سفارش شما از موجودی انبار بیشتر باشد.</p><br>
+    <a href="{% url 'home' %}" class="btn btn-primary w-100">بازگشت</a>
+ 
+</div>
+{% endblock content %}

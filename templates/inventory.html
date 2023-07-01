@@ -1,0 +1,33 @@
+{% extends 'navs.html' %}
+
+{% block content %}
+<div class="p-5 my-3">
+    <div class="d-flex">
+        <div class="flex-grow-1 font-weight-bold h3 text-primary">انبار ها</div>
+        <div class="flex-shrink-0">
+            <a href="{% url 'inventory_new' %}" class="btn btn-success btn-square"><i class="fa-solid fa-plus h5"></i></a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <!-- head -->
+            <thead>
+                <tr>
+                    <th>شهر انبار</th>
+                    <th class="text-end">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inventory in object_list %}
+                <!-- row 1 -->
+                <tr>
+                    <td>{{ inventory.city }}</td>
+                    <td class="text-end"><a href="{% url 'inventory_delete' inventory.pk %}" class="btn btn-danger btn-square"><i class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
